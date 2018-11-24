@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<body>
+<?php
+	include("include/header.inc.php");
+	include("include/local.inc.php");
+
+	$db = new DB_kis;
+	$db->connect();
+?>
+<?php
+	$db->query("SELECT * FROM aktuelles WHERE aktiv='J' ORDER BY sort_id desc");
+	while($db->next_record())
+	{
+?>
+<div id="vollebreite"><h2><?php=$db->f("ueberschrift");?></h2></div>
+<div style="clear:both">
+<div id="aktuelleslinks">
+	<h4><?php=$db->f("ueberschrift1");?></h4>
+	<?php=nl2br($db->f("absatz1"));?>
+	<br />
+	<br />
+<?php
+	if(strcmp($db->f("ueberschrift2"), "") != 0)
+	{
+?>
+	<h4><?php=$db->f("ueberschrift2");?></h4>
+	<?php=nl2br($db->f("absatz2"));?>
+	<br />
+	<br />
+<?php
+	}
+	if(strcmp($db->f("ueberschrift3"), "") != 0)
+	{
+?>
+	<h4><?php=$db->f("ueberschrift3");?></h4>
+	<?php=nl2br($db->f("absatz3"));?>
+	<br />
+	<br />
+<?php
+	}
+	if(strcmp($db->f("ueberschrift4"), "") != 0)
+	{
+?>
+	<h4><?php=$db->f("ueberschrift4");?></h4>
+	<?php=nl2br($db->f("absatz4"));?>
+	<br />
+	<br />
+<?php
+	}
+?>
+	<br />
+	<br />
+	<img src="imgs/R_prof_dr_gruschwitz_logo_kl.jpg" />
+	<br />
+	Ihre Hautarzt-Praxis Prof. Dr. Gruschwitz in<br />Kümmersbruck i. d. Oberpfalz.
+</div>
+<div id="aktuellesrechts">
+<?php
+	if(strcmp($db->f("upl_bild1"), "") != 0)
+	{
+?>
+	<img src="imgs/upload/th/<?php=$db->f("upl_bild1");?>" class="bildschatten" />
+<?php
+	}
+	if(strcmp($db->f("upl_bild2"), "") != 0)
+	{
+?>
+	<img src="imgs/upload/th/<?php=$db->f("upl_bild2");?>" class="bildschatten" />
+<?php
+	}
+	if(strcmp($db->f("upl_bild3"), "") != 0)
+	{
+?>
+	<img src="imgs/upload/th/<?php=$db->f("upl_bild3");?>" class="bildschatten" />
+<?php
+	}
+	if(strcmp($db->f("upl_bild4"), "") != 0)
+	{
+?>
+	<img src="imgs/upload/th/<?php=$db->f("upl_bild4");?>" class="bildschatten" />
+<?php
+	}
+?>
+</div>
+</div>
+<div id="vollebreite"><br /><hr /><br /></div>
+<?php
+	}
+?>
+<?php
+	include("include/footer.inc.php");
+?>
+
+</body>
+</html>
